@@ -7,9 +7,17 @@ const mongoose = require("mongoose");//Database
 const devicesRoutes = require("./api/routes/devices");
 const smartHomeRoutes = require("./api/routes/smartHome");
 
-mongoose.connect("mongodb+srv://BBBServer:" + process.env.MONGO_ATLAS_PW + "@bbbserver-fybr1.mongodb.net/test?retryWrites=true&w=majority",
+mongoose.connect("mongodb+srv://BBBServer:" + process.env.MONGO_ATLAS_PW + "@bbbserver-fybr1.mongodb.net/test?retryWrites=true&w=majority", 
     {
-        useMongoClient: true
+        useUnifiedTopology: true,
+        useNewUrlParser: true
+        //useMongoClient: true // depreciated, replaced with useUnifiedTopology: true
+    },
+    function(err, client) {
+        if (err) {
+          console.log(err);
+        }
+        console.log('connected!!!');
     }
 ); // Password is env variable in nodemon.json
 
