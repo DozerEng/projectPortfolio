@@ -1,2 +1,10 @@
+#Files to ignore:
 nodemon.json
+uploads/*
+
+#Exception to the rule
+!uploads/.gitkeep
+
+#Directories to ignore
 /node_modules/
+

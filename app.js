@@ -5,8 +5,6 @@ const bodyParser = require("body-parser"); //parses json
 const mongoose = require("mongoose");//Database
 
 
-
-//comment to test git
 const devicesRoutes = require("./api/routes/devices");
 const smartHomeRoutes = require("./api/routes/smartHome");
 
@@ -24,9 +22,8 @@ mongoose.connect("mongodb+srv://BBBServer:" + process.env.MONGO_ATLAS_PW + "@bbb
     }
 ); // Password is env variable in nodemon.json
 
-
-
 app.use(morgan("dev")); //dev is output type, command line logging of HTTP words
+app.use("/uploads", express.static('uploads')); //url now requires /uploads/filename rather than just /filename
 app.use(bodyParser.urlencoded({extended: false})); //handling simple bodies
 app.use(bodyParser.json());
 
