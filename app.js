@@ -4,6 +4,8 @@ const morgan = require("morgan"); //outputs REST requests to console
 const bodyParser = require("body-parser"); //parses json
 const mongoose = require("mongoose");//Database
 
+
+//comment to test git
 const devicesRoutes = require("./api/routes/devices");
 const smartHomeRoutes = require("./api/routes/smartHome");
 
