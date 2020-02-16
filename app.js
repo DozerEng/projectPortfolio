@@ -5,6 +5,7 @@ const bodyParser = require("body-parser"); //parses json
 const mongoose = require("mongoose");//Database
 
 
+
 //comment to test git
 const devicesRoutes = require("./api/routes/devices");
 const smartHomeRoutes = require("./api/routes/smartHome");
@@ -13,15 +14,17 @@ mongoose.connect("mongodb+srv://BBBServer:" + process.env.MONGO_ATLAS_PW + "@bbb
     {
         useUnifiedTopology: true,
         useNewUrlParser: true
-        //useMongoClient: true // depreciated, replaced with useUnifiedTopology: true
     },
     function(err, client) {
         if (err) {
           console.log(err);
+        } else {
+            console.log('Connected to MongoDB');
         }
-        console.log('connected!!!');
     }
 ); // Password is env variable in nodemon.json
+
+
 
 app.use(morgan("dev")); //dev is output type, command line logging of HTTP words
 app.use(bodyParser.urlencoded({extended: false})); //handling simple bodies

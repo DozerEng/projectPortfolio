@@ -7,11 +7,26 @@ const Device = require('../models/devices');
 
 router.get('/', (req, res, next) => {
     Device.find()
+        .select("name currentState _id") //filters for fields in brackets
         .exec()
         .then(docs => {
-            console.log(docs);
+            const response = {
+                count: docs.length,
+                devices: docs.map(doc => {
+                    return {
+                        name: doc.name,
+                        currentState: doc.currentState,
+                        _id: doc._id,
+                        request: {
+                            type: "GET",
+                            url: "http://localhost:9000/devices/" + doc._id //creates link for client to responde to device, set to premanent url
+                        }
+                    }
+                })
+            };
+            //console.log(docs);
             //if (docs.length >= 0) {
-                res.status(200).json(docs);
+            res.status(200).json(response);
             //} else {
             //    res.status(200).json({
             //        message: "No entries found"
@@ -34,16 +49,24 @@ router.post('/', (req, res, next) => {
         currentState: req.body.currentState
     });
     device
-        .save()
+        .save() //method for storing to mongo db
         .then(result => {
-            console.log(result); //*****************NOT PRINTING, RESULT IS NOT DEFINED LIKELY AN ISSUE WITH THE METHOD THEN() *****************************
+            console.log(result); 
             res.status(201).json({  //response to client
-                message: 'Handling POST requests to /devices',
-                createdDevice: device
+                message: 'Successfully added device',
+                createdDevice: {
+                    name: result.name,
+                    currentState: result.currentState,
+                    _id: result._id,
+                    request: {
+                        type: "GET",
+                        url: "http://localhost:9000/devices/" + result._id
+                    }
+                }
             });
         }) 
         .catch(err => {
-            console.log(err); //method for storing to mongo db
+            console.log(err); 
             res.status(500).json({
                 error: err
             });
@@ -51,13 +74,21 @@ router.post('/', (req, res, next) => {
 });
 
 router.get('/:deviceId', (req, res, next) => {
-    const id = req.params.productId;
-    Device.findById(id)
+    const id = req.params.deviceId;
+    Device.findById(id) //mongoDB find by id from DB
+        .select("name currentState _id")
         .exec()
         .then(doc => {
             console.log("From database", doc);
             if (doc) {
-                res.status(200).json(doc);
+                res.status(200).json({
+                    product: doc,
+                    request: {
+                        type: "GET",
+                        description: "Get all devices",
+                        url: "http://localhost:9000/devices"
+                    }
+                });
             } else {
                 res.status(404).json({
                     message: "No valid entry found for device ID"
@@ -79,7 +110,13 @@ router.patch('/:deviceId', (req, res, next) => {
     Device.update({ _id: id }, { $set: updateOps }) //updates fields that were available
     .exec()
     .then(result => {
-        res.status(200).json(result);
+        res.status(200).json({
+            message: "Device updated",
+            request: {
+                type: "GET",
+                url: "http://localhost:9000/devices/" + id
+            }
+        });
     })
     .catch(err => {
         console.log(err);
@@ -91,10 +128,17 @@ router.patch('/:deviceId', (req, res, next) => {
 
 router.delete('/:deviceId', (req, res, next) => {
     const id = req.params.deviceId;
-    Device.remove({ _id: id })
+    Device.deleteOne({ _id: id })
     .exec()
     .then(result => {
-        res.status(200).json(result);
+        res.status(200).json({
+            message: "Device delete",
+            request: {
+                type: "POST",
+                url: "http://localhost:9000/devices/",
+                body: { name: "String", currentState: "Number"}
+            }
+        });
     })
     .catch(err => {
         console.log(err);
