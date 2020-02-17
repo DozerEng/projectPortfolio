@@ -14,5 +14,6 @@ To become familiar with many development practices and utilities including:
 - implement googleassistant api and IFTTT for smart home control
 
 ## Resources used for project
-RESTful API and login services: https://www.youtube.com/watch?v=0oXYLzuucwE&list=PL55RiY5tL51q4D-B63KBnygU6opNPFk_q&index=1
-- Author: Academind
+- RESTful API and login services with nodejs: 
+  - https://www.youtube.com/watch?v=0oXYLzuucwE&list=PL55RiY5tL51q4D-B63KBnygU6opNPFk_q&index=1
+  - Author: Academind
