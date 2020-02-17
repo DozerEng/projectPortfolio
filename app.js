@@ -4,14 +4,15 @@ const morgan = require("morgan"); //outputs REST requests to console
 const bodyParser = require("body-parser"); //parses json
 const mongoose = require("mongoose");//Database
 
-
 const devicesRoutes = require("./api/routes/devices");
 const smartHomeRoutes = require("./api/routes/smartHome");
+const userRoutes = require("./api/routes/user");
 
 mongoose.connect("mongodb+srv://BBBServer:" + process.env.MONGO_ATLAS_PW + "@bbbserver-fybr1.mongodb.net/test?retryWrites=true&w=majority", 
     {
         useUnifiedTopology: true,
-        useNewUrlParser: true
+        useNewUrlParser: true,
+        useCreateIndex: true
     },
     function(err, client) {
         if (err) {
@@ -40,6 +41,7 @@ app.use((req, res, next) => {
 //Routes to be handled
 app.use("/devices", devicesRoutes);
 app.use("/smartHome", smartHomeRoutes);
+app.use("/user", userRoutes);
 
 //Hanlding errors that make it past routes
 app.use((req, res, next) => {   
