@@ -1,10 +1,13 @@
 #Files to ignore:
 nodemon.json
 uploads/*
+/public/images/*
 
 #Exception to the rule
 !uploads/.gitkeep
+!public/images/favicon.ico
 
 #Directories to ignore
 /node_modules/
+
 

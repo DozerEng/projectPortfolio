@@ -3,7 +3,7 @@ const app = express();
 const morgan = require("morgan"); //outputs REST requests to console
 const bodyParser = require("body-parser"); //parses json
 const mongoose = require("mongoose");//Database
-
+ 
 const devicesRoutes = require("./api/routes/devices");
 const smartHomeRoutes = require("./api/routes/smartHome");
 const userRoutes = require("./api/routes/user");
@@ -21,12 +21,16 @@ mongoose.connect("mongodb+srv://BBBServer:" + process.env.MONGO_ATLAS_PW + "@bbb
             console.log('Connected to MongoDB');
         }
     }
-); // Password is env variable in nodemon.json
+);
 
+
+//app.use('/favicon.ico', express.static('public/images/favicon.ico'));
 app.use(morgan("dev")); //dev is output type, command line logging of HTTP words
 app.use("/uploads", express.static('uploads')); //url now requires /uploads/filename rather than just /filename
+app.use("/images", express.static('images')); //url now requires /uploads/filename rather than just /filename
 app.use(bodyParser.urlencoded({extended: false})); //handling simple bodies
 app.use(bodyParser.json());
+app.use(express.static("public"));
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");//handler for CORS errors, change "*" to restrict access 
