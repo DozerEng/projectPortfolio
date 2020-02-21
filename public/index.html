@@ -23,6 +23,7 @@
         -->
         
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Pillon Engineering</title>
 
         <!-- Include the jquery library -->
@@ -32,278 +33,104 @@
 
         <link rel="stylesheet" href="styles.css">
         <link rel="icon" href="/images/favicon.ico">
-
         
     </head>
     <body>
-        
-        <div class="header"><img 
-            src='/images/smartLifeLogo.png'
-            alt='Smart Life Home Automation'
-            height=100%>
-        </div>
+        <div class="wrapper">
 
-        <div class ="layout accountNav">
-            <p>
-                <a href='#'>Login</a> | <a href='#'>Sign Up</a>
-            </p>
-        </div>
-
-        <div class ="layout navBar">
-            <ul>
-                <li ><a class="active" href="index.html">Home</a></li>
-                <li ><a href="about.html">About</a></li>
-                <li><a href="beagleBoneHardware.html">BB Black Demo</a></li>
-                <li><a href="jsAnimationDemo.html">JS Animation</a></li>
-            </ul>
-        </div>
-        
-        <div class="layout navBar">
-            <H1>Please note this site is currently under construction and likely will not function as expected.
-                <br>
-                Thank you for your patience.
-            </H1>
-        </div>
-
-
-        <div class ="layout leftColumn">
-            <br><br><br>
-            <div class="sideBarElement">
-                <span class="title">Smart Life Home Automation</span>
-                <p> Live in the future 
-                <br>Live smarter
-                <br>Live the Smart Life
+            <div class="logo">                
+                <img 
+                id="logo"
+                src='/images/smartLifeLogo.png'
+                alt='Smart Life Home Automation'>
             </div>
-            <br><br>
-            <h1>Heading 1</h1>
-            <h2>Heading 2</h2>
-            <h3>Heading 3</h3>
-            <h4>Heading 4</h4>
-            <h5>Heading 5</h5>
-            <h6>Heading 6</h6>
-            <p>Paragraph</p>
-            <br><br><br><br>
-        </div>
-        
-        <!-- Start of the Individual Page Content -->
-
-        <div class="layout rightColumn">
-
-
-
-            <h2>Using the Floor Plan</h2>
-            <p>
-                The goal of the <i>Smart Life</i> project has always been to make your home smarter but to do it in an easy to manage way. 
-                Below you can see my apartments floor plan.
-                The standard room temperature is 23 degress celcius and rooms at that temperature exactly are a standard colour. 
-                Rooms which are colder or warmer than this room temperature have a slight blue or red hue to them to indicate this difference.
-            </p>
-            <canvas id="floorPlanCanvas"></canvas> 
-            <div class='caption'>
-                Sample floor plan (Non-functioning)
-                <br>
-                Note: The bedroom is above room temperature and the kitchen is below, while the living and dining rooms are at room temperature.
+            <div class="header">
+                <div class="layout mobileNavBar">
+                    <a href="javascript:void(0)" onclick="menu()">Menu</a>
+                </div>
+                <div class="layout navBar">
+                        <a class="active" href="" id="home" onclick="navigate()">Home</a>
+                        <a class="notActive" href="" id="about" onclick="navigate()">About</a>
+                        <a class="notActive" href="" id="devices" onclick="navigate()">Devices</a>
+                        <a class="notActive" href="" id="otherProjects" onclick="navigate()">Other Projects</a>
+                        <a class="notActive" href="" id="3dPrints" onclick="navigate()">3D Prints</a>
+                        <a class="notActive" href="" id="login" onclick="navigate()">Login</a>
+                </div>
             </div>
-            <p>
-                The floor plan is the centerpiece of the system, current and upcoming features include:
-            </p>
-                <ul class='generalLists'>
-                    <li>All devices in proper locations with current status (Online/Offline)</li>
-                    <li>Device state (On/off or locked/unlocked)</li>
-                    <li>Location relevant data (Temperature exactly where measured)</li>
-                    <li>Interactive information, click any piece of data for additional information</li>
-                    <li>Location of residents and pets </li>
-                </ul>
-            <p>
-                Many of these features are in development and feedback or recommendations is always welcome! 
-                Please see the contact link at the bottom of the page to pass on your useful advice.
-            </p>
-            <br><br>
-        </div>
+            <div class="sidebar">
+                <div class="layout sideNavBar">
+                    <a class="active" href="" id="1" onclick="navigate()">Sidebar1</a>
+                    <a class="notActive" href="" id="2" onclick="navigate()">Sidebar2</a>
+                    <a class="notActive" href="" id="3" onclick="navigate()">Sidebar3</a>
+                    <a class="notActive" href="" id="4" onclick="navigate()">Sidebar4</a>
+                    <a class="notActive" href="" id="5" onclick="navigate()">Sidebar 5</a>
+                </div>
+            </div>
+            <div class="leftPadding"></div>
+            <div class="rightPadding"></div>
 
-
-        
-        <div class="layout rightColumn" id='oldDevices'>
+            <div class="content"> 
+                <div class="layout"><h2>SITE UNDER CONSTRUCTION</h2>
+                    <br> <h5>This site is under construction.
+                        <br>Thank you for your patience, please check back regularly
+                        <br> as content is being added as quickly as possible.
+                    </h5>
+                </div>
+                <br>
+                <div class="layout">
+                    <h2>The Origional 3 Smart Life Devices</h2>
+                    <p>
+                    The Origional 3 Smart Life Devices.
+                    </p>
+                    <img 
+                    src='/images/oldDevices.jpg'
+                    alt='Smart Life Home Automation'
+                    width=70%
+                    margin=50px>
+                </div>
+            </div>
             
-            <h2>The Origional 3 Smart Life Devices</h2>
-            <p>
-            The Origional 3 Smart Life Devices.
-            </p>
-            <img 
-            src='/images/oldDevices.jpg'
-            alt='Smart Life Home Automation'
-            width=70%
-            margin=50px>
+            
+            
+            
+            <div class="footer layout">            
+                <p>
+                    <a href="https://sites.google.com/site/smartlifeautomation/home" target="_blank">Fanshawe Capstone</a> 
+                    | <a href="https://sites.google.com/site/smartlifeautomation/home" target="_blank">About Smart Life</a> 
+                    | <a href="https://www.paypal.com/ca/webapps/mpp/send-money-online" traget ="_blank">Donate</a> 
+                    | <a href="https://sites.google.com/site/smartlifeautomation/home" target="_blank">Contact</a> 
+                    <br>
+                    © 2020 - Pillon Engineering
+                </p>
+            </div>
         </div>
-        
-    
-        
-        <div class="layout rightColumn">
-            <canvas id="smileCanvas"></canvas> 
-        </div>
-        
-        
-        
-        <div class="layout footer">
-            <p>
-                <a href="https://sites.google.com/site/smartlifeautomation/home" target="_blank">Fanshawe Capstone</a> 
-                | <a href="https://sites.google.com/site/smartlifeautomation/home" target="_blank">About Smart Life</a> 
-                | <a href="https://www.paypal.com/ca/webapps/mpp/send-money-online" traget ="_blank">Donate</a> 
-                | <a href="https://sites.google.com/site/smartlifeautomation/home" target="_blank">Contact</a> 
-                <br>
-                © 2020 - Pillon Engineering
-            </p>
-        </div>
-        
-
-    
-   
-
-    
-    
-
-    <!-- Run all the JavaScript stuff -->
-    <!-- Include the processing.js library -->
-    <!-- See https://khanacademy.zendesk.com/hc/en-us/articles/202260404-What-parts-of-ProcessingJS-does-Khan-Academy-support- for differences -->
-    
 
     <script>
-        
-    
-    
-    
-        // Javascript Drawings 
-    
-    
-    var sketchSmile = function(processingInstance) {
-    with (processingInstance) {
-        size(400, 400); 
-        frameRate(0);
-        
-        
-        //creates black, 100% transparent background, background(color, transparency), background(255,255,255,transparency) when trasnparency is 0 (invisible) --> 100% (solid)
-        background(0,0);
-        
-        // ProgramCodeGoesHere
-        fill(255, 255, 0);
-        ellipse(200, 200, 200, 200);
-        noFill();
-        stroke(0, 0, 0);
-        strokeWeight(8);
-        arc(200, 210, 150, 100, 0, PI);
-        fill(0, 0, 0);
-        ellipse(245, 170, 20, 20);
-        ellipse(158, 170, 20, 20);
-    }};
 
-    // Get the canvas that Processing-js will use
-    var smileCanvas = document.getElementById("smileCanvas"); 
-    // Pass the function sketchSmile to Processing's constructor.
-    var processingInstance = new Processing(smileCanvas, sketchSmile); 
-
-
-
-
-        /*
-        Floor Plan for Smart Life Home Automation Project
-        Runs on a BeagleBone Black using a NodeJS server.
-        Features:
-            - Using temperature sensor data to skew colour red/blue based on actual temperature vs 23 degress C
-            - Show status of smart light switch devices and smart door lock. 
-        */
-    var sketchFloorPlan = function(floorPlanInstance) {
-        with(floorPlanInstance) {   
-            /*
-            Floor Plan for Smart Life Home Automation Project
-            Runs on a BeagleBone Black using a NodeJS server.
-            Features:
-                - Using temperature sensor data to skew colour red/blue based on actual temperature vs 23 degress C
-                - Show status of smart light switch devices and smart door lock. 
-            */
-            size(600, 550); 
-            frameRate(0);
-            //creates black, 100% transparent background, background(color, transparency), background(255,255,255,transparency) when trasnparency is 0 (invisible) --> 100% (solid)
-            background(0,0);
-            
-            var factor = 3; // Master scaling factor, adjust based on canvas size
-            var xOffset = 23;   //top left corner offset on X-axis
-            var yOffset = 120;   //top left corner offset on Y-axis
-            var labelSize = 6*factor; //for text labels of rooms
-            var labelColor = color(0, 0, 0);
-            textSize(labelSize);
-            
-            //Room colour defines
-            var defaultColor = color(200, 200, 200);
-            var tooHot = color(255, 100, 100);
-            var tooCold = color(100, 100, 255);
-            var justRight = color(255, 225, 150);
-            
-            var livingRoomFill = blendColor(defaultColor, justRight, SCREEN);
-            var bedroomFill = blendColor(defaultColor, tooHot, SCREEN);
-            var diningRoomFill = blendColor(defaultColor, justRight, SCREEN);
-            var kitchenFill = blendColor(defaultColor, tooCold, SCREEN);
-            var balconyFill = defaultColor //blendColor(defaultColor, defaultColor, SCREEN);
-            var otherRoomFill = defaultColor;
-            
-            
-            
-            //Room Layouts
-            //Living Room
-            fill(livingRoomFill); //living room fill
-            rect(xOffset, yOffset, 151*factor, 136*factor); //top left background, living room
-            fill(labelColor);
-            text("Living Room", xOffset + 77 * factor, yOffset + 35 * factor);
-            
-            //Bedroom
-            fill(bedroomFill);
-            rect(xOffset, yOffset, 65*factor, 83*factor); //Bedroom
-            fill(labelColor);
-            text("Bedroom", xOffset + 20 * factor, yOffset + 40 * factor);
-            
-            //Balcony
-            fill(balconyFill);
-            rect(xOffset + 120*factor, yOffset - 25*factor , 62*factor, 25*factor); //Balcony
-            fill(labelColor);
-            text("Balcony", xOffset + 141 * factor, yOffset - 11 * factor);
-            
-            //Dining Room
-            fill(diningRoomFill);
-            rect(xOffset + 120*factor, yOffset, 62*factor, 55*factor); //Dining Area
-            fill(labelColor);
-            text("Dining Room", xOffset + 133 * factor, yOffset + 30 * factor);
-            
-            //Kitchen
-            fill(kitchenFill);
-            rect(xOffset + 120*factor, yOffset + 55*factor, 62*factor, 47*factor); //Kitchen
-            fill(labelColor);
-            text("Kitchen", xOffset + 140 * factor, yOffset + 80 * factor);
-            
-            //other rooms
-            fill(otherRoomFill);
-            rect(xOffset, yOffset + 83*factor, 33*factor, 17*factor); //Bedroom Closet
-            rect(xOffset, yOffset + 100*factor, 52*factor, 36*factor); //Bathroom
-            rect(xOffset + 52*factor, yOffset + 100*factor, 14*factor, 13*factor); //Closets
-            rect(xOffset + 52*factor, yOffset + 113*factor, 14*factor, 23*factor); //Closets
-            rect(xOffset + 118*factor, yOffset + 102*factor, 33*factor, 34*factor); //Storage Room
-            
+        //menu() needs to be rewritten using adding/removing classes instead of changing elements
+        //Current fix is using !important for @media display: commands
+        menu = () => {
+            console.log($(".sideNavBar").is(":visible"));
+            if($(".sideNavBar").is(":visible")) {
+                $(".sideNavBar").css("display", "none");
+                $(".navBar").css("display", "none");
+                $(".sideNavBar a").css("display", "none");
+                $(".navBar a").css("display", "none");
+                $(".mobileNavBar").css("margin-bottom", "0px");
+            } else {
+                $(".sideNavBar").css("display", "block");
+                $(".navBar").css("display", "block");
+                $(".sideNavBar a").css("display", "block");
+                $(".navBar a").css("display", "block");
+                $(".mobileNavBar").css("margin-bottom", "10px");
+                
+            }
         }
-    };
-    // Get the canvas that Processing-js will use
-    var floorPlanCanvas = document.getElementById("floorPlanCanvas"); 
-    // Pass the function sketchSmile to Processing's constructor.
-    var floorPlanInstance = new Processing(floorPlanCanvas, sketchFloorPlan);  
-            
-
-        
-
-
-
 
 
 
     </script>
-    
-            
+  
     </body>
      
 </html>

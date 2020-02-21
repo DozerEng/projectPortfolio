@@ -1,287 +1,186 @@
-/*
-CSS style sheet for Beaglebone Black Server
+/* 
+CSS Grid Setup
 */
-
-
-/*
-Styles for standard HTML elements
-*/
-body {
-    background-color: #000000;
-    background: url("https://lh3.googleusercontent.com/iBN_sKZizWIZiVxxF2cYKGOe9MSEbpDv_98Y-rsJi4Mj5QpXW-Zr0_EXS_phYyZj6BPQoAlUxS6wO9R7sRo90aTKafVRetRQo6BS5c36CM6-VvmgzhuxS8jK88bqMmUuSxkeHETbukIWpTDd72ou5O0yAznJAFvyUdOiZ_kB3DEo9Qw4AkTrdVudRaCLlfvCKVHGfsn4QrWS3vPXDwOZ6FgRXB4_IaJamwjaM6Ue4UXgfbI0KooOu5tpwkubLjKxeiOzNH_4UKFkVpUSJtkUAHvzQHia57vX_Aez35nm9W2h8nz1qllzJjgsJl0t7ke6jOHkvc-dF2yaBqrq-PdbnC_qE6Z-wGw57mtD5AAvfj4NsPXvmXXv_xTQbyogyQWqrdUVAWoAh3i6TV8_QCN7_uEJP0Fyh5H7ZbGimuf0aSHUk_IT2eYwPN7oOgoruZoNtq_a_3QBGNeVXdq1QJdFHMUgZomf3BQFy0ANU9JoWOmfnUnW9N5xPhgoEx5CCxwviOpRnYusinoLC5wizTeuN2Ban_OyD7bcaUtCbbhM0WJzojqbmZhQbEWF2fLVT8oyuV990RKoBIJhu7z_rZSB9o3nSHrsyqlU4j2jFnZfuSZtOKvhZkOzYnCwsq3V04KsgIHvlCtU5V3Nkou-xNgBH-RVYtSyTeKn=w623-h714-no") ;
-    background-size: cover;
-    background-position: center top;
-    
-    font-family: Helvetica;
+.sidebar { grid-area: sidebar; }
+.content { grid-area: content; }
+.logo { grid-area: logo; }
+.header { grid-area: header; }
+.footer { grid-area: footer; }
+.leftPadding { grid-area: leftPadding; }
+.rightPadding { grid-area: rightPadding; }
+.wrapper {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-areas:
+    "logo"
+    "header"
+    "sidebar"
+    "content"
+    "footer"
+    "leftPadding"
+    "rightPadding"
 }
 
+
+/* 
+General Stylings
+*/
+body {
+    margin: 20px;
+    background: url("/images/background.jpg") ;
+    background-size: cover;
+    background-position: center top;
+    font-family: Helvetica;
+}
+.layout {
+    text-align: center;
+    background-color: #333333;
+    border: 0.5em outset cornflowerblue;
+    border-radius: 20px 80px;
+    padding: 20px;
+    color: #fff;
+}
 
 h1 {
     color: dodgerblue;
-    text-align: center;
     font-size: 2.5em;
 }
 h2 {
-    text-align: center;
     color: goldenrod;
     font-size: 2.0em;
 }
 h3 {
-    text-align: center;
     color: #0080ff; /* slightly darker than dodgerblue */
     font-size: 1.75em;
 
 }
 h4 {
-    text-align: center;
     color: cornflowerblue;
     font-size: 1.5em;
 } 
 h5 {
-    text-align: center;
     color: firebrick;
-    font-size: 1.3em;
+    font-size: 1.2em;
 } 
 h6 {
-    text-align: center;
     color: goldenrod;
     font-size: 1.2em;
-    margin: 0;
-    padding: 0;
 }
 
 p {
     text-align: center;
     color: white;
-    font-size: 1.1em;
-
-    
+    font-size: 1.0em;
+    padding: 0rem 2rem;
 } 
-
-.generalLists li {
-    text-align: left;
-    margin: 0 0 0 20%; /* could use a @media query to adjust */
-    list-style-position: inside; /* aligns bullets next to text */
-    color: white;
-    font-size: 1.0em;
-}
-
-.caption {
-    margin: 0px 30px 50px 30px;
-    padding: 0;
-    color: white;
-    font-size: 0.8em;
-}
-
-
-/*
-Styles for objects and 
+/* 
+Logo
 */
-button {
-    font-size: 1.0em;
+.logo {
     text-align: center;
-    font-family: verdana;
 }
-button:hover {
-    background-color: silver; 
-}
-.status a {
-    font-size: 1.0em;
-    font-weight: bold;
-    color: white;
-}
-
-/***************************************************************************************************************************************
-Page Layout
-***************************************************************************************************************************************/
-
-/*
-Classes for general layout usage
-*/
-
-.layout {
-    background-color: #333333;
-    border: 0.5em outset cornflowerblue;
-    text-align: center;
-    
-    margin: 0;
-    padding: 0;
-    
-    border-radius: 20px 80px;
-}
-
-
-/*
-Classes for header panel
-No layout class added
-*/
-
-.header {
-    margin: 1.5em auto 1.5em auto;
-    height: 200px;
-    text-align: center;
-    padding: 1.0em;
-}
-
-/*
-Classes for header panel
-No layout class added
-*/
-
-.layout.accountNav {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    
-    padding: 0 1.5em 0 1.5em;
-}
-.layout.accountNav p {
-    font-size: 0.9em;
-}
-
-.layout.accountNav a {
-    color: white;
-    text-decoration: none;
-}
-
-.layout.accountNav a:hover {
-    color: goldenrod;
-    text-decoration: underline;
-    
-}
-
-
-/*
-Classes for navigation panel
-*/
-.layout.navBar {
-    position: sticky;
-    top: 0%;
-    
-    list-style-type: none;
-
-    margin: 2% auto 5% auto;
-    padding: 0;
-    
-    overflow: hidden;
-    width: 80%;
+#logo {
     height: auto;
+    max-width: 100%;
+}
 
-    font-size: 0.8em;
-    font-weight: bold;
-    text-align: center;
-    
-    clear: both;
+/*
+Navigation Panel
+*/
+.mobileNavBar {
+    display: block;
+    font-weight: semi-bold;
+    width: max-content;
+    padding: 10px;
+    margin: auto;
+    overflow: hidden;
 }
-.layout.navBar li {
-    display: inline;
+.navBar, .sideNavBar  {
+    font-weight: semi-bold;
+    padding: 0;
+    overflow: hidden;
+    display: none;
 }
-.layout.navBar .active {
+.navBar .active, .sideNavBar .active {
     background-color: #FFFFFF;
-    color: #000000 !important;
-    }
-.layout.navBar li a {
-
+    color: #000000;
+}
+.navBar a, .sideNavBar a, .mobileNavBar a{
     color: white;
-    font-size: 1.5em;
-    text-align: center;
+    font-size: 1.2em;
     text-decoration: none;
-    padding: 1.0em;
+    padding: 10px 15px 10px 15px; 
     margin: 0;
 }
-.layout.navBar li a:hover {
+.navBar a, .sideNavBar a {
+    display: none;
+}
+.navBar a:hover, .sideNavBar a:hover {
     background-color: green;
     color: black;
 }
 
 /*
-Classes for the left column panel(s)
+Footer
 */
-
-.layout.leftColumn {
-    margin: 0% 0% 2.5% 5%;
-    
-    float: left;
-    
-    width: 15%;
-    
-    text-align: center;
+.footer {
+    margin: 0 auto 0 auto;
+    padding: 0 5% 0 5%;
     overflow: hidden;
-}
-
-
-.layout.leftColumn .sideBarElement {
-    background-color: black;
-    border-radius: 10px;
-    margin: 10px;
-    padding: 5px;
-}
-
-.layout.leftColumn .sideBarElement .title{
-    color: goldenrod;
-    font-weight: bold;
-    font-size: 1.2em;
-}
-/*
-Classes for the center column panel(s)
-*/
-
-.layout.rightColumn {
-    margin: 0% 5% 2.5% 0% ;
-    float: right;
-    padding: 0;
-    
-    width: 68%;
-    
-    text-align: center;
-    overflow: visible;
-}
-
-.layout.rightColumn p {
-    margin: 2% auto 2% auto;
-    width: 80%;
-}
-
-/*
-Classes for the footer panel
-*/
-
-.layout.footer {
-    margin: 5% auto 5% auto;
-    
-    padding: 0;
-    overflow: visible;
-
-    width: 60%;
-    text-align: center;
-    
+    width: auto;
     line-height: 2.0em;
-    clear: both;
-
-
 }
-.layout.footer a {
+.footer a {
     color: dodgerblue;
     text-decoration: none;
 }
-
-.layout.footer a:hover {
+.footer a:hover {
     color: white;
     text-decoration: underline;
 }
 
-
-
-/* not working */
-@media (max-width: 300px) {
-    .layout.leftcolumn {
-        width: 80% !important;
-        margin: 0 auto 2.5 auto !important;
-        background-color: lightgreen;
+@media only screen and (min-width: 900px)  {
+    .layout.mobileNavBar, .sideMenu {
+        display: none;
     }
-    .layout.rightcolumn {
-        width: 80% !important;
-        margin: 0 auto 2.5 auto !important;
-        background-color: lightgreen;
+    .navBar {
+        width: max-content;
+        margin: auto;
+        padding: 0 50px 0 50px;
+        display: block !important; 
+    }
+    .navBar a {
+        display: inline-block !important;
+        padding: 10px 8px 10px 8px;
+    }
+    .sideNavBar a{
+        display: block !important;
+    }
+    .sideNavBar {
+        display: block !important;
+        padding: 20px 0 20px 0;
+        width: auto
+    }
+    .footer {
+        width: 60%
+    }
+    .wrapper {
+        grid-template-columns: 0 220px auto 0;
+        grid-template-areas:
+        "leftPadding    logo        logo        rightPadding"
+        "leftPadding    header      header      rightPadding"
+        "leftPadding    sidebar     content     rightPadding"
+        "leftPadding    footer      footer      rightPadding";
+    }
+}
+
+@media only screen and (min-width: 1130px)  {
+    .wrapper {
+        grid-template-columns: auto 220px 800px auto;
+        grid-template-areas:
+        "leftPadding    logo        logo        rightPadding"
+        "leftPadding    header      header      rightPadding"
+        "leftPadding    sidebar     content     rightPadding"
+        "leftPadding    footer      footer      rightPadding";
     }
 }
