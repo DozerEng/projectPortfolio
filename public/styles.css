@@ -121,6 +121,25 @@ Navigation Panel
 }
 
 /*
+Content
+*/
+.generalLists li {
+    text-align: left;
+    margin: 0 0 0 20%; /* could use a @media query to adjust */
+    list-style-position: inside; /* aligns bullets next to text */
+    color: white;
+    font-size: 1.0em;
+}
+
+.caption {
+    margin: 0px 30px 50px 30px;
+    padding: 0;
+    color: white;
+    font-size: 0.8em;
+}
+
+
+/*
 Footer
 */
 .footer {
@@ -139,6 +158,70 @@ Footer
     text-decoration: underline;
 }
 
+/*
+Login and Sign Form
+*/
+.backgroundCover {
+    display: none;
+    background-color: #555555;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    opacity: .9;
+    z-index: 8;
+
+}
+.loginPopUp {
+    display: none;
+    position: fixed;
+    vertical-align: middle;
+    left: 50%;
+    margin-left: -150px;
+    top: 10%;
+    opacity: 1;
+    z-index: 9;
+}
+.loginContainer {
+    max-width: 300px;
+    padding: 10px;
+}
+.loginContainer input[type=text]:focus, .form-container input[type=password]:focus {
+    background-color: #ddd;
+}
+.loginContainer .submitButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    border-radius: 15px;
+    width: 60%;
+    margin-bottom:10px;
+    cursor: pointer;
+}
+.loginContainer .cancelButton {
+    background-color: red;
+    color: white;
+    padding: 16px 20px;
+    border-radius: 15px;
+    width: 60%;
+    margin-bottom:10px;
+    cursor: pointer;
+}
+.loginContainer .submitButton:hover, .cancelButton:hover {
+    opacity: 0.5;
+}
+.loginPopUp input[type=text], .form-container input[type=password] {
+    width: 80%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    background: #f1f1f1;
+}
+
+
+/*
+Media Queries
+*/
 @media only screen and (min-width: 900px)  {
     .layout.mobileNavBar, .sideMenu {
         display: none;
@@ -165,7 +248,7 @@ Footer
         width: 60%
     }
     .wrapper {
-        grid-template-columns: 0 220px auto 0;
+        grid-template-columns: 0 200px auto 0;
         grid-template-areas:
         "leftPadding    logo        logo        rightPadding"
         "leftPadding    header      header      rightPadding"
@@ -174,9 +257,9 @@ Footer
     }
 }
 
-@media only screen and (min-width: 1130px)  {
+@media only screen and (min-width: 1100px)  {
     .wrapper {
-        grid-template-columns: auto 220px 800px auto;
+        grid-template-columns: auto 200px 800px auto;
         grid-template-areas:
         "leftPadding    logo        logo        rightPadding"
         "leftPadding    header      header      rightPadding"

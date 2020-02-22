@@ -4,6 +4,8 @@ const morgan = require("morgan"); //outputs REST requests to console
 const bodyParser = require("body-parser"); //parses json
 const mongoose = require("mongoose");//Database
  
+
+const contentRoutes = require("./api/routes/content");
 const devicesRoutes = require("./api/routes/devices");
 const smartHomeRoutes = require("./api/routes/smartHome");
 const userRoutes = require("./api/routes/user");
@@ -27,7 +29,7 @@ mongoose.connect("mongodb+srv://BBBServer:" + process.env.MONGO_ATLAS_PW + "@bbb
 //app.use('/favicon.ico', express.static('public/images/favicon.ico'));
 app.use(morgan("dev")); //dev is output type, command line logging of HTTP words
 app.use("/uploads", express.static('uploads')); //url now requires /uploads/filename rather than just /filename
-app.use("/images", express.static('images')); //url now requires /uploads/filename rather than just /filename
+app.use("/images", express.static('images')); //url now requires /images/filename rather than just /filename
 app.use(bodyParser.urlencoded({extended: false})); //handling simple bodies
 app.use(bodyParser.json());
 app.use(express.static("public"));
@@ -43,6 +45,7 @@ app.use((req, res, next) => {
 });
 
 //Routes to be handled
+app.use("/content", contentRoutes);
 app.use("/devices", devicesRoutes);
 app.use("/smartHome", smartHomeRoutes);
 app.use("/user", userRoutes);

@@ -44,69 +44,84 @@
                 src='/images/smartLifeLogo.png'
                 alt='Smart Life Home Automation'>
             </div>
+
+            <!-- Navigation Bar and Sidebar -->
             <div class="header">
                 <div class="layout mobileNavBar">
-                    <a href="javascript:void(0)" onclick="menu()">Menu</a>
+                    <a href="javascript:void(0)" onclick="menu()">Menu &#9776</a>
                 </div>
                 <div class="layout navBar">
-                        <a class="active" href="" id="home" onclick="navigate()">Home</a>
-                        <a class="notActive" href="" id="about" onclick="navigate()">About</a>
-                        <a class="notActive" href="" id="devices" onclick="navigate()">Devices</a>
-                        <a class="notActive" href="" id="otherProjects" onclick="navigate()">Other Projects</a>
-                        <a class="notActive" href="" id="3dPrints" onclick="navigate()">3D Prints</a>
-                        <a class="notActive" href="" id="login" onclick="navigate()">Login</a>
+                        <a href="javascript:void(0)" id="home" onclick="navigateMain('home')">Home</a>
+                        <a href="javascript:void(0)" id="about" onclick="navigateMain('about')">About</a>
+                        <a href="javascript:void(0)" id="devices" onclick="navigateMain('devices')">Devices</a>
+                        <a href="javascript:void(0)" id="otherProjects" onclick="navigateMain('otherProjects')">Other Projects</a>
+                        <a href="javascript:void(0)" id="3dPrints" onclick="navigateMain('3dPrints')">3D Prints</a>
                 </div>
             </div>
             <div class="sidebar">
                 <div class="layout sideNavBar">
-                    <a class="active" href="" id="1" onclick="navigate()">Sidebar1</a>
-                    <a class="notActive" href="" id="2" onclick="navigate()">Sidebar2</a>
-                    <a class="notActive" href="" id="3" onclick="navigate()">Sidebar3</a>
-                    <a class="notActive" href="" id="4" onclick="navigate()">Sidebar4</a>
-                    <a class="notActive" href="" id="5" onclick="navigate()">Sidebar 5</a>
+                    <hr>
+                    <a href="javascript:void(0)" id="loginButton" onclick="loginButton('open', 'login')">Login</a>
+                    <a href="javascript:void(0)" id="signUpButton" onclick="loginButton('open', 'signUp')">Sign Up</a>
+                    <hr>
+                    <div id="sidebarContent">
+                        <a href="javascript:void(0)" id="3" onclick="navigateSide('3')">Sidebar3</a>
+                        <a href="javascript:void(0)" id="4" onclick="navigateSide('4')">Sidebar4</a>
+                        <a href="javascript:void(0)" id="5" onclick="navigateSide('5')">Sidebar 5</a>
+                    </div>
                 </div>
             </div>
+            <!-- EO Navigation Bar and Sidebar -->
+
+            <!-- Login / sign up pop ups-->
+            <div class="backgroundCover" onclick="loginButton('close')"></div>
+            <div class="loginPopUp" id="loginForm">
+                <form action="/user/login" method="post" class="layout loginContainer">
+                    <h6>Login<br>(Currently unavailable)</h6>
+
+                    <label for="email">E-mail:</label>
+                    <input type="text" placeholder="Enter Email" name="email" required>
+                
+                    <label for="password">Password:</label>
+                    <input type="text" placeholder="Enter Password" name="password" required>
+
+                    <button type="submit" class="submitButton">Login</button>
+                    <button type="button" class="cancelButton" onclick="loginButton('close','login')">Close</button>
+                </form>
+            </div>
+
+            <div class="loginPopUp" id="signUpForm">
+                <form action="/user/signup" method="post" class="layout loginContainer">
+                    <h6>Sign Up<br>(Currently unavailable)</h6>
+
+                    <label for="email">E-mail:</label>
+                    <input type="text" placeholder="Enter Email" name="email" required>
+                
+                    <label for="password1">Password:</label>
+                    <input type="text" placeholder="Enter Password" name="password1" required>
+                    <label for="password2">Retype Password:</label>
+                    <input type="text" placeholder="Enter Password" name="password2" required>
+
+                    <button type="submit" class="submitButton">Sign Up</button>
+                    <button type="button" class="cancelButton" onclick="loginButton('close','signUp')">Close</button>
+                </form>
+            </div>
+            <!-- EO Login / sign up pop ups-->
+            
+
             <div class="leftPadding"></div>
             <div class="rightPadding"></div>
 
             <div class="content"> 
-                <div class="layout"><h2>SITE UNDER CONSTRUCTION</h2>
-                    <br> <h5>This site is under construction.
-                        <br>Thank you for your patience, please check back regularly
-                        <br> as content is being added as quickly as possible.
-                    </h5>
-                </div>
-                <br>
-                <div class="layout">
-                    <h2>The Origional 3 Smart Life Devices</h2>
-                    <p>
-                    The Origional 3 Smart Life Devices.
-                    </p>
-                    <img 
-                    src='/images/oldDevices.jpg'
-                    alt='Smart Life Home Automation'
-                    width=70%
-                    margin=50px>
-                </div>
+                
             </div>
             
-            
-            
-            
             <div class="footer layout">            
-                <p>
-                    <a href="https://sites.google.com/site/smartlifeautomation/home" target="_blank">Fanshawe Capstone</a> 
-                    | <a href="https://sites.google.com/site/smartlifeautomation/home" target="_blank">About Smart Life</a> 
-                    | <a href="https://www.paypal.com/ca/webapps/mpp/send-money-online" traget ="_blank">Donate</a> 
-                    | <a href="https://sites.google.com/site/smartlifeautomation/home" target="_blank">Contact</a> 
-                    <br>
-                    © 2020 - Pillon Engineering
-                </p>
+                <p>© 2020 - Pillon Engineering</p>
             </div>
         </div>
 
     <script>
-
         //menu() needs to be rewritten using adding/removing classes instead of changing elements
         //Current fix is using !important for @media display: commands
         menu = () => {
@@ -123,12 +138,82 @@
                 $(".sideNavBar a").css("display", "block");
                 $(".navBar a").css("display", "block");
                 $(".mobileNavBar").css("margin-bottom", "10px");
-                
             }
         }
+        //Navigation Bar Links
+        navigateMain = (page) => {
+            $.ajax({
+                url: "content/" + page + ".html",
+                type: "GET",
+                success: (result, status, xhr) => {
+                    $(".content").empty();
+                    $(".content").append(result);
+                    $(".navBar .active").removeClass("active");
+                    $(".sideNavBar .active").removeClass("active");
+                    $("#" + page).addClass("active");
 
+                    //clear mobile menu
+                    if( $(window).width() < 900) {
+                        $(".sideNavBar").css("display", "none");
+                        $(".navBar").css("display", "none");
+                        $(".sideNavBar a").css("display", "none");
+                        $(".navBar a").css("display", "none");
+                        $(".mobileNavBar").css("margin-bottom", "0px");
+                    }
+                }
+            });
+        }
+        navigateSide = (page) => {
+            $.ajax({
+                url: "content/" + page + ".html",
+                type: "GET",
+                success: (result, status, xhr) => {
+                    $(".content").empty();
+                    $(".content").append(result);
+                    $(".sideNavBar .active").removeClass("active");
+                    $("#" + page).addClass("active");
 
+                    //clear mobile menu
+                    if( $(window).width() < 900) {
+                        $(".sideNavBar").css("display", "none");
+                        $(".navBar").css("display", "none");
+                        $(".sideNavBar a").css("display", "none");
+                        $(".navBar a").css("display", "none");
+                        $(".mobileNavBar").css("margin-bottom", "0px");
+                    }
+                }
+            });
+        }
+        //Load login/signup pop up
+        loginButton = (windowAction, popupType) => {
+            if(windowAction === 'open') {
+                $(".backgroundCover").css('display', 'block');
+                if(popupType === 'login') {
+                    //enter login form
+                    $('#loginForm').css('display', 'block');
+                }
+                else {
+                    //enter sign up form
+                    $('#signUpForm').css('display', 'block');
+                }
+            }
+            else if(windowAction === 'close') {        
+                $(".backgroundCover").css('display', 'none');        
+                $('#loginForm').css('display', 'none');
+                $('#signUpForm').css('display', 'none');    
+            }
+        }
+        login = () => {
 
+        }
+        signUp = () => {
+
+        }
+        placeHolder = () => {
+
+        }
+
+        $(document).ready(navigateMain('home'));
     </script>
   
     </body>
