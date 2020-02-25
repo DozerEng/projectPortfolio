@@ -5,7 +5,7 @@ const SmartHomeController = require("../controllers/smartHome");
 const checkAuth = require("../middleware/check-auth");
 
 //Handling HTTP reuests
-router.get('/', checkAuth, SmartHomeController.smartHome_get_all);
+router.get('/', SmartHomeController.smartHome_get_all);
 
 router.post('/', checkAuth, SmartHomeController.smartHome_create_smart_home);
 

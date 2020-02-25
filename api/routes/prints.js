@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require("multer"); //parsing multi field form data
 
-const DevicesController = require("../controllers/devices");
+const PrintsController = require("../controllers/prints");
 const checkAuth = require("../middleware/check-auth");
 
 const storage = multer.diskStorage({ //Every file received will have the following functions called
@@ -10,7 +10,7 @@ const storage = multer.diskStorage({ //Every file received will have the followi
         cb(null, './uploads/');
     },
     filename: function(req, file, cb) {
-        cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname); //.replace(/:/g, '-') replaces : with - to conform to windows
+        cb(null, file.originalname); //.replace(/:/g, '-') replaces : with - to conform to windows
     }
 });
 
@@ -25,21 +25,21 @@ const fileFilter = (req, file, cb) => { //Accept or reject, use
 const upload = multer({ //storage config for uploads
     storage: storage,
     limits: {
-        fileSize: 1024 * 1024 * 5 //1024 * 1024 * 5 is 5mb max size
+        fileSize: 1024 * 1024 * 50 //1024 * 1024 * 5 is 5mb max size
     },
     fileFilter: fileFilter
 }); 
 
 
 //Handle HTTP requests
-router.get('/', DevicesController.devices_get_all);
+router.get('/', PrintsController.prints_get_all);
 
-router.post('/', upload.single("deviceImage"), DevicesController.devices_create_device);
+router.post('/', upload.single("projectImage"), PrintsController.prints_create_print);
 
-router.get('/:deviceId', DevicesController.devices_get_device);
+router.get('/:printId', PrintsController.prints_get_print);
 
-router.patch('/:deviceId', checkAuth, DevicesController.devices_update_device);
+router.patch('/:printId', checkAuth, PrintsController.prints_update_print);
 
-router.delete('/:deviceId', checkAuth, DevicesController.devices_delete_device);
+router.delete('/:printId', PrintsController.prints_delete_print);
 
 module.exports = router;

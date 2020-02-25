@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require("multer"); //parsing multi field form data
 
-const DevicesController = require("../controllers/devices");
+const OtherProjectsController = require("../controllers/otherProjects");
 const checkAuth = require("../middleware/check-auth");
 
 const storage = multer.diskStorage({ //Every file received will have the following functions called
@@ -10,7 +10,7 @@ const storage = multer.diskStorage({ //Every file received will have the followi
         cb(null, './uploads/');
     },
     filename: function(req, file, cb) {
-        cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname); //.replace(/:/g, '-') replaces : with - to conform to windows
+        cb(null, file.originalname); //.replace(/:/g, '-') replaces : with - to conform to windows
     }
 });
 
@@ -25,21 +25,21 @@ const fileFilter = (req, file, cb) => { //Accept or reject, use
 const upload = multer({ //storage config for uploads
     storage: storage,
     limits: {
-        fileSize: 1024 * 1024 * 5 //1024 * 1024 * 5 is 5mb max size
+        fileSize: 1024 * 1024 * 50 //1024 * 1024 * 5 is 5mb max size
     },
     fileFilter: fileFilter
 }); 
 
 
 //Handle HTTP requests
-router.get('/', DevicesController.devices_get_all);
+router.get('/', OtherProjectsController.otherProjects_get_all);
 
-router.post('/', upload.single("deviceImage"), DevicesController.devices_create_device);
+router.post('/', upload.single("projectImage"), OtherProjectsController.otherprojects_create_otherproject);
 
-router.get('/:deviceId', DevicesController.devices_get_device);
+router.get('/:otherprojectId', OtherProjectsController.otherprojects_get_otherproject);
 
-router.patch('/:deviceId', checkAuth, DevicesController.devices_update_device);
+router.patch('/:otherprojectId', checkAuth, OtherProjectsController.otherprojects_update_otherproject);
 
-router.delete('/:deviceId', checkAuth, DevicesController.devices_delete_device);
+router.delete('/:otherprojectId', OtherProjectsController.otherprojects_delete_otherproject);
 
 module.exports = router;

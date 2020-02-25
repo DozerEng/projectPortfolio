@@ -3,17 +3,12 @@
     <head>
         <!--
 /*************************************************************************
-# File Name: index.html
+# Project Name: projectPortfolio
 # Author: Michael Pillon
-# Date: January 16, 2018
-# Description:  Multi-Page NodeJS, SOCKET.IO server.
+# Description:  SPA using NodeJS, expressjs, mongoDB/mongoose, running as a RESTful API server.
 #			    Designed to expand on the Smart Life capstone into a functional
-#               smart home setup.
-#               
-#               The system will function with a single server (this device) run on a BeagleBone 
-#               Black serving client requests on a DDNS. It will also act as central hub for an
-#               array of smart home devices the data from which will be combined and displayed on
-#               a web page.
+#               smart home setup. 
+#               Features a project portfolio of technical projects and 3D prints.
 #
 #
 #
@@ -40,9 +35,10 @@
 
             <div class="logo">                
                 <img 
-                id="logo"
+                id="imageLogo"
                 src='/images/smartLifeLogo.png'
-                alt='Smart Life Home Automation'>
+                alt='Smart Life Home Automation'
+                onclick="popUpButton('open','imageLogo')">
             </div>
 
             <!-- Navigation Bar and Sidebar -->
@@ -55,14 +51,14 @@
                         <a href="javascript:void(0)" id="about" onclick="navigateMain('about')">About</a>
                         <a href="javascript:void(0)" id="devices" onclick="navigateMain('devices')">Devices</a>
                         <a href="javascript:void(0)" id="otherProjects" onclick="navigateMain('otherProjects')">Other Projects</a>
-                        <a href="javascript:void(0)" id="3dPrints" onclick="navigateMain('3dPrints')">3D Prints</a>
+                        <a href="javascript:void(0)" id="prints" onclick="navigateMain('prints')">3D Prints</a>
                 </div>
             </div>
             <div class="sidebar">
                 <div class="layout sideNavBar">
                     <hr>
-                    <a href="javascript:void(0)" id="loginButton" onclick="loginButton('open', 'login')">Login</a>
-                    <a href="javascript:void(0)" id="signUpButton" onclick="loginButton('open', 'signUp')">Sign Up</a>
+                    <a href="javascript:void(0)" id="loginButton" onclick="popUpButton('open', 'loginForm')">Login</a>
+                    <a href="javascript:void(0)" id="signUpButton" onclick="popUpButton('open', 'signUpForm')">Sign Up</a>
                     <hr>
                     <div id="sidebarContent">
                         <a href="javascript:void(0)" id="3" onclick="navigateSide('3')">Sidebar3</a>
@@ -73,9 +69,15 @@
             </div>
             <!-- EO Navigation Bar and Sidebar -->
 
-            <!-- Login / sign up pop ups-->
-            <div class="backgroundCover" onclick="loginButton('close')"></div>
-            <div class="loginPopUp" id="loginForm">
+            <!-- Login / sign up / pop ups-->
+            <div class="backgroundCover" onclick="popUpButton('close','currentPopUp')"></div>
+            <div id="imageContainer" onclick="popUpButton('close', 'imageContainer')">
+                <img 
+                id="imagePopUp"
+                onclick="popUpButton('close','imagePopUp')">
+            </div>
+
+            <div id="loginForm">
                 <form action="/user/login" method="post" class="layout loginContainer">
                     <h6>Login<br>(Currently unavailable)</h6>
 
@@ -86,11 +88,11 @@
                     <input type="text" placeholder="Enter Password" name="password" required>
 
                     <button type="submit" class="submitButton">Login</button>
-                    <button type="button" class="cancelButton" onclick="loginButton('close','login')">Close</button>
+                    <button type="button" class="cancelButton" onclick="popUpButton('close','loginForm')">Close</button>
                 </form>
             </div>
 
-            <div class="loginPopUp" id="signUpForm">
+            <div id="signUpForm">
                 <form action="/user/signup" method="post" class="layout loginContainer">
                     <h6>Sign Up<br>(Currently unavailable)</h6>
 
@@ -103,7 +105,7 @@
                     <input type="text" placeholder="Enter Password" name="password2" required>
 
                     <button type="submit" class="submitButton">Sign Up</button>
-                    <button type="button" class="cancelButton" onclick="loginButton('close','signUp')">Close</button>
+                    <button type="button" class="cancelButton" onclick="popUpButton('close','signUpForm')">Close</button>
                 </form>
             </div>
             <!-- EO Login / sign up pop ups-->
@@ -140,7 +142,7 @@
                 $(".mobileNavBar").css("margin-bottom", "10px");
             }
         }
-        //Navigation Bar Links
+        //Navigation Bar Links - ToDo cookie to remember page, if that is a good practice
         navigateMain = (page) => {
             $.ajax({
                 url: "content/" + page + ".html",
@@ -151,6 +153,8 @@
                     $(".navBar .active").removeClass("active");
                     $(".sideNavBar .active").removeClass("active");
                     $("#" + page).addClass("active");
+                //error handler:
+                //ToDo
 
                     //clear mobile menu
                     if( $(window).width() < 900) {
@@ -172,6 +176,8 @@
                     $(".content").append(result);
                     $(".sideNavBar .active").removeClass("active");
                     $("#" + page).addClass("active");
+                //Error Handler
+                //Todo
 
                     //clear mobile menu
                     if( $(window).width() < 900) {
@@ -184,34 +190,78 @@
                 }
             });
         }
-        //Load login/signup pop up
-        loginButton = (windowAction, popupType) => {
+        //Load login/signup pop up - ToDo Everything + store JWT in cookie
+        popUpButton = (windowAction, popUpName) => {
+            var popUpId = "#" + popUpName;
+            var popUpClass = "." + popUpName;
+
+            $(".backgroundCover").css('display', 'block');
             if(windowAction === 'open') {
-                $(".backgroundCover").css('display', 'block');
-                if(popupType === 'login') {
-                    //enter login form
-                    $('#loginForm').css('display', 'block');
+                if(popUpName.match(/^image/)) {
+                    var imgUrl = $(popUpId).attr('src');
+
+                    $("#imagePopUp").attr('src', imgUrl);
+
+                    var myImg = document.querySelector("#imagePopUp");
+                    var realWidth = myImg.naturalWidth;
+                    var realHeight = myImg.naturalHeight;
+
+                    var windowHeight = $(window).height();
+                    var windowWidth = $(window).width();
+
+                    if(realHeight > realWidth ) {
+                        var imageHeight = 0.8 * windowHeight;
+                        var heightOffset = ((windowHeight - imageHeight) / 2.0 ); 
+                        var widthOffset = (windowWidth - (imageHeight/realHeight)*realWidth ) / 2.0;
+                        $("#imagePopUp").attr('height', imageHeight);
+                        $("#imagePopUp").attr('width', 'auto');
+                        $("#imagePopUp").css('left', widthOffset);
+                        $("#imagePopUp").css('top', heightOffset);
+                    } else {
+                        var imageWidth = 0.8 * windowWidth;
+                        var widthOffset = ((windowWidth - imageWidth) / 2.0 ); 
+                        var heightOffset = (windowHeight - (imageWidth/realWidth) * realHeight) / 2.0;
+
+                        $("#imagePopUp").attr('width', imageWidth);
+                        $("#imagePopUp").attr('height', 'auto');                        
+                        $("#imagePopUp").css('left', widthOffset);
+                        $("#imagePopUp").css('top', heightOffset);
+                    }
+                    $("#imageContainer").css('display', 'block');
                 }
-                else {
-                    //enter sign up form
-                    $('#signUpForm').css('display', 'block');
+                else {//login/signup
+                    $(popUpId).addClass('currentPopUp');
+                    $(popUpId).css('display', 'block');
                 }
             }
             else if(windowAction === 'close') {        
-                $(".backgroundCover").css('display', 'none');        
-                $('#loginForm').css('display', 'none');
-                $('#signUpForm').css('display', 'none');    
+                $(".backgroundCover").css('display', 'none'); 
+                if( $(popUpClass).hasClass('currentPopUp') ) { //click on background
+                    $('.currentPopUp').css('display', 'none');
+                    popUpId = '#' + $('.currentPopUp').attr("id");
+                    $(popUpId).removeClass('currentPopUp');
+
+                } else if (popUpName.match(/^image/)) {//handles click on container and enlarged image
+                    $("#imagePopUp").removeAttr('src');
+                    $("#imageContainer").css('display', 'none');
+                }
+                /*
+                else if(popUpName === 'loginForm') {
+                    //handle login form POST and response
+                    //form POSTs automatically, but needs handling
+                    //the closing of window (if needed).
+                    //depends how post is handled, may have to block page change
+                }
+                else if (popUpName === 'signUpForm') {
+                    //Handle sign up form POST and response, see above
+                }
+                */
+                else {//login, signup, , on background click
+                    $(popUpId).css('display', 'none');
+                }
             }
         }
-        login = () => {
-
-        }
-        signUp = () => {
-
-        }
-        placeHolder = () => {
-
-        }
+        
 
         $(document).ready(navigateMain('home'));
     </script>

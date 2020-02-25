@@ -10,7 +10,7 @@ CSS Grid Setup
 .rightPadding { grid-area: rightPadding; }
 .wrapper {
     display: grid;
-    grid-gap: 1em;
+    grid-gap: 1rem;
     grid-template-areas:
     "logo"
     "header"
@@ -26,63 +26,96 @@ CSS Grid Setup
 General Stylings
 */
 body {
-    margin: 20px;
+    margin: 8px;
     background: url("/images/background.jpg") ;
     background-size: cover;
     background-position: center top;
     font-family: Helvetica;
 }
+/*
+Mobile Stylings
+*/
 .layout {
     text-align: center;
     background-color: #333333;
-    border: 0.5em outset cornflowerblue;
-    border-radius: 20px 80px;
-    padding: 20px;
+    border: 0.5rem outset cornflowerblue;
+    border-radius: 10px 40px;
+    padding: 20px 5px 20px 5px;
     color: #fff;
 }
-
 h1 {
     color: dodgerblue;
-    font-size: 2.5em;
+    font-size: 2.0rem;
+    margin: 0.25rem 0 0.25rem 0;
 }
 h2 {
     color: goldenrod;
-    font-size: 2.0em;
+    font-size: 1.5rem;
+    margin: 0.25rem 0 0.25rem 0;
 }
 h3 {
     color: #0080ff; /* slightly darker than dodgerblue */
-    font-size: 1.75em;
-
+    font-size: 1.25rem;
+    margin: 0.25rem 0 0.25rem 0;
 }
 h4 {
     color: cornflowerblue;
-    font-size: 1.5em;
+    font-size: 1.25rem;
+    margin: 0.25rem 0 0.25rem 0;
 } 
 h5 {
     color: firebrick;
-    font-size: 1.2em;
+    font-size: 1.25rem;
+    margin: 0.25rem 0 0.25rem 0;
 } 
 h6 {
     color: goldenrod;
-    font-size: 1.2em;
+    font-size: 1.25rem;
+    margin: 0.25rem 0 0.25rem 0;
 }
-
 p {
     text-align: center;
     color: white;
-    font-size: 1.0em;
-    padding: 0rem 2rem;
+    font-size: small;
+    padding: 0rem 0.5rem;
+    margin: 0.5rem;
 } 
 /* 
-Logo
+Images - See login for site background styles
 */
 .logo {
     text-align: center;
 }
-#logo {
+#imageLogo {
     height: auto;
     max-width: 100%;
 }
+[onClick] {
+    cursor:pointer;
+}
+#imageContainer{
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 8;
+}
+#imagePopUp {
+    position: fixed;
+    vertical-align: middle;
+    left: 0;
+    top: 0;
+
+    z-index: 9;
+}
+#imageHome3Devices {
+    border-radius: 10px;
+    max-width: 70%;
+    margin: 50px;
+}
+
 
 /*
 Navigation Panel
@@ -107,7 +140,7 @@ Navigation Panel
 }
 .navBar a, .sideNavBar a, .mobileNavBar a{
     color: white;
-    font-size: 1.2em;
+    font-size: small;
     text-decoration: none;
     padding: 10px 15px 10px 15px; 
     margin: 0;
@@ -128,14 +161,14 @@ Content
     margin: 0 0 0 20%; /* could use a @media query to adjust */
     list-style-position: inside; /* aligns bullets next to text */
     color: white;
-    font-size: 1.0em;
+    font-size: 1.0rem;
 }
 
 .caption {
     margin: 0px 30px 50px 30px;
     padding: 0;
     color: white;
-    font-size: 0.8em;
+    font-size: 0.8rem;
 }
 
 
@@ -147,7 +180,7 @@ Footer
     padding: 0 5% 0 5%;
     overflow: hidden;
     width: auto;
-    line-height: 2.0em;
+    line-height: 2.0rem;
 }
 .footer a {
     color: dodgerblue;
@@ -170,10 +203,9 @@ Login and Sign Form
     height: 100%;
     width: 100%;
     opacity: .9;
-    z-index: 8;
-
+    z-index: 7;
 }
-.loginPopUp {
+#loginForm, #signUpForm {
     display: none;
     position: fixed;
     vertical-align: middle;
@@ -187,7 +219,8 @@ Login and Sign Form
     max-width: 300px;
     padding: 10px;
 }
-.loginContainer input[type=text]:focus, .form-container input[type=password]:focus {
+.loginContainer input[type=text]:focus, 
+.form-container input[type=password]:focus {
     background-color: #ddd;
 }
 .loginContainer .submitButton {
@@ -211,18 +244,118 @@ Login and Sign Form
 .loginContainer .submitButton:hover, .cancelButton:hover {
     opacity: 0.5;
 }
-.loginPopUp input[type=text], .form-container input[type=password] {
+.loginContainer input[type=text], .loginContainer input[type=password] {
     width: 80%;
     padding: 15px;
     margin: 5px 0 22px 0;
     background: #f1f1f1;
 }
 
+/* 
+SlideShow Styles
+ */
+.slideShowContainer {
+    width: 90%;
+    height: auto;  
+    position: relative;
+    margin: auto;
+}
+.imageSlideShow {
+    width: auto;
+    max-width: 100%;
+    max-height: 500px;
+    border-radius: 20px;
+}
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+.prev {
+    left:0; 
+}
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+.activeDot, .dot:hover {
+background-color: cornflowerblue;
+}
 
 /*
-Media Queries
+Desktop Styles
 */
-@media only screen and (min-width: 900px)  {
+@media only screen and (min-width: 900px)  {             
+    body {
+        margin: 20px;
+    }  
+    h1 {
+        color: dodgerblue;
+        font-size: 2.5rem;
+        margin: 0.5rem 0 0.5rem 0;
+    }
+    h2 {
+        color: goldenrod;
+        font-size: 2.5rem;
+        margin: 0.5rem 0 0.5rem 0;
+    }
+    h3 {
+        color: #0080ff; /* slightly darker than dodgerblue */
+        font-size: 1.5rem;
+        margin: 0.5rem 0 0.5rem 0;
+    }
+    h4 {
+        color: cornflowerblue;
+        font-size: 1.5rem;
+        margin: 0.5rem 0 0.5rem 0;
+    } 
+    h5 {
+        color: firebrick;
+        font-size: 1.5rem;
+        margin: 0.5rem 0 0.5rem 0;
+    } 
+    h6 {
+        color: goldenrod;
+        font-size: 1.5rem;
+        margin: 0.5rem 0 0.5rem 0;
+    }
+    p {
+        text-align: center;
+        color: white;
+        font-size: medium;
+        padding: 0rem 0.5rem;
+        margin: 0.5rem;
+    } 
+    .layout {
+        text-align: center;
+        background-color: #333333;
+        border: 0.5rem outset cornflowerblue;
+        border-radius: 20px 80px;
+        padding: 20px;
+        color: #fff;
+    }
     .layout.mobileNavBar, .sideMenu {
         display: none;
     }

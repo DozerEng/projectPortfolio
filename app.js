@@ -8,6 +8,8 @@ const mongoose = require("mongoose");//Database
 const contentRoutes = require("./api/routes/content");
 const devicesRoutes = require("./api/routes/devices");
 const smartHomeRoutes = require("./api/routes/smartHome");
+const otherProjectsRoutes = require("./api/routes/otherProjects");
+const printsRoutes = require("./api/routes/prints");
 const userRoutes = require("./api/routes/user");
 
 mongoose.connect("mongodb+srv://BBBServer:" + process.env.MONGO_ATLAS_PW + "@bbbserver-fybr1.mongodb.net/test?retryWrites=true&w=majority", 
@@ -47,6 +49,8 @@ app.use((req, res, next) => {
 //Routes to be handled
 app.use("/content", contentRoutes);
 app.use("/devices", devicesRoutes);
+app.use("/otherProjects", otherProjectsRoutes);
+app.use("/prints", printsRoutes);
 app.use("/smartHome", smartHomeRoutes);
 app.use("/user", userRoutes);
 
