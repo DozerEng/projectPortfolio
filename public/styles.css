@@ -20,8 +20,6 @@ CSS Grid Setup
     "leftPadding"
     "rightPadding"
 }
-
-
 /* 
 General Stylings
 */
@@ -115,8 +113,6 @@ Images - See login for site background styles
     max-width: 70%;
     margin: 50px;
 }
-
-
 /*
 Navigation Panel
 */
@@ -152,7 +148,6 @@ Navigation Panel
     background-color: green;
     color: black;
 }
-
 /*
 Content
 */
@@ -170,8 +165,6 @@ Content
     color: white;
     font-size: 0.8rem;
 }
-
-
 /*
 Footer
 */
@@ -190,7 +183,6 @@ Footer
     color: white;
     text-decoration: underline;
 }
-
 /*
 Login and Sign Form
 */
@@ -250,7 +242,6 @@ Login and Sign Form
     margin: 5px 0 22px 0;
     background: #f1f1f1;
 }
-
 /* 
 SlideShow Styles
  */
@@ -303,7 +294,6 @@ SlideShow Styles
 .activeDot, .dot:hover {
 background-color: cornflowerblue;
 }
-
 /*
 Desktop Styles
 */
@@ -389,7 +379,6 @@ Desktop Styles
         "leftPadding    footer      footer      rightPadding";
     }
 }
-
 @media only screen and (min-width: 1100px)  {
     .wrapper {
         grid-template-columns: auto 200px 800px auto;

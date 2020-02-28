@@ -12,10 +12,9 @@ const mongoose = require("mongoose");
 const printsSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     name: { type: String, required: true },
-    projectImage: { type: String, required: true },
+    mainImage: { type: String, required: true },
     title: { type: String, required: true},
-    shortDescription: { type: String, default: "" },
-    longDescription: { type: String, default: ""}
+    description: { type: String, default: "" }
 });
 
 module.exports = mongoose.model('Prints', printsSchema);

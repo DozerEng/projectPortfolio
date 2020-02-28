@@ -4,7 +4,7 @@ const OtherProject = require("../models/otherProjects");
 
 exports.otherProjects_get_all = (req, res, next) => {
     OtherProject.find()
-        .select("name _id projectImage title shortDescription longDescription") //filters for fields in brackets
+        .select("name _id mainImage secondImage thirdImage forthImage title shortDescription longDescription") //filters for fields in brackets
         .exec()
         .then(docs => {
             const response = {
@@ -13,7 +13,10 @@ exports.otherProjects_get_all = (req, res, next) => {
                     return {
                         name: doc.name,
                         title: doc.title,
-                        projectImage: doc.projectImage,
+                        mainImage: doc.mainImage,
+                        secondImage: doc.secondImage,
+                        thirdImage: doc.thirdImage,
+                        forthImage: doc.forthImage,
                         _id: doc._id,
                         shortDescription: doc.shortDescription,
                         longDescription: doc.longDescription,
@@ -40,7 +43,7 @@ exports.otherprojects_create_otherproject = (req, res, next) => {
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         title: req.body.title,
-        projectImage: req.file.path,
+        mainImage: req.file.path,
         shortDescription: req.body.shortDescription,
         longDescription: req.body.longDescription
     });
@@ -53,7 +56,7 @@ exports.otherprojects_create_otherproject = (req, res, next) => {
                 createdOtherProject: {
                     name: result.name,
                     title: result.title,
-                    projectImage: result.projectImage,
+                    mainImage: result.mainImage,
                     shortDescription: result.shortDescription,
                     longDescription: result.longDescription,
                     _id: result._id,

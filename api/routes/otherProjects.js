@@ -7,7 +7,7 @@ const checkAuth = require("../middleware/check-auth");
 
 const storage = multer.diskStorage({ //Every file received will have the following functions called
     destination: function(req, file, cb) {
-        cb(null, './uploads/');
+        cb(null, './public/images/otherProjects/');
     },
     filename: function(req, file, cb) {
         cb(null, file.originalname); //.replace(/:/g, '-') replaces : with - to conform to windows
@@ -34,7 +34,7 @@ const upload = multer({ //storage config for uploads
 //Handle HTTP requests
 router.get('/', OtherProjectsController.otherProjects_get_all);
 
-router.post('/', upload.single("projectImage"), OtherProjectsController.otherprojects_create_otherproject);
+router.post('/', upload.single("mainImage"), OtherProjectsController.otherprojects_create_otherproject);
 
 router.get('/:otherprojectId', OtherProjectsController.otherprojects_get_otherproject);
 

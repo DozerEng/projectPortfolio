@@ -4,7 +4,7 @@ const Print = require("../models/prints");
 
 exports.prints_get_all = (req, res, next) => {
     Print.find()
-        .select("name _id projectImage title shortDescription longDescription") //filters for fields in brackets
+        .select("name _id mainImage title description") //filters for fields in brackets
         .exec()
         .then(docs => {
             const response = {
@@ -13,10 +13,9 @@ exports.prints_get_all = (req, res, next) => {
                     return {
                         name: doc.name,
                         title: doc.title,
-                        projectImage: doc.projectImage,
+                        mainImage: doc.mainImage,
                         _id: doc._id,
-                        shortDescription: doc.shortDescription,
-                        longDescription: doc.longDescription,
+                        description: doc.description,
                         request: {
                             type: "GET",
                             url: "http://localhost:9000/prints/" + doc._id //creates link for client to responde to print, set to premanent url
@@ -40,9 +39,8 @@ exports.prints_create_print = (req, res, next) => {
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         title: req.body.title,
-        projectImage: req.file.path,
-        shortDescription: req.body.shortDescription,
-        longDescription: req.body.longDescription
+        mainImage: req.file.path,
+        description: req.body.description
     });
     print
         .save() //method for storing to mongo db
@@ -53,9 +51,8 @@ exports.prints_create_print = (req, res, next) => {
                 createdPrint: {
                     name: result.name,
                     title: result.title,
-                    projectImage: result.projectImage,
-                    shortDescription: result.shortDescription,
-                    longDescription: result.longDescription,
+                    mainImage: result.mainImage,
+                    description: result.description,
                     _id: result._id,
                     request: {
                         type: "GET",
@@ -75,7 +72,7 @@ exports.prints_create_print = (req, res, next) => {
 exports.prints_get_print = (req, res, next) => {
     const id = req.params.printId;
     Print.findById(id) //mongoDB find by id from DB
-        .select("name _id projectImage title shortDescription longDescription")
+        .select("name _id mainImage title description")
         .exec()
         .then(doc => {
             console.log("From database", doc);

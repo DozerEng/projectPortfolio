@@ -13,6 +13,13 @@
   <div id="dotContainer" style="text-align:center"></div>
   <p id="numberText"></p>
 </div>  
+<br>
+<div class="layout">
+  <div class="descriptions">
+    
+  </div>
+
+</div>
 
 
 <script>
@@ -41,9 +48,12 @@ nextSlide = (incrementValue) => {
 }
 
 changeSlide = (newSlide) => {
+  slideIndex = newSlide;
   $("#numberText").text( (newSlide + 1) + ' / ' + projectCount );
-  $(".imageSlideShow").attr('src', printsData[newSlide].projectImage);
+  $(".imageSlideShow").attr('src', printsData[newSlide].mainImage);
   $("#slideShowText").text(printsData[newSlide].title);
+  $('.descriptions').empty();
+  $('<p />').text(printsData[newSlide].description).appendTo('.descriptions');
   for(let i = 0; i < projectCount; i++ ) {
     if(i === newSlide) {
       $("#dot" + i).addClass(' activeDot');

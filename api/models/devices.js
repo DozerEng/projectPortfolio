@@ -13,7 +13,12 @@ const deviceSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     name: { type: String, required: true },
     currentState: { type: Number },
-    deviceImage: { type: String, required: true },
+    mainImage: { type: String, required: true },
+    secondImage: { type: String },
+    thirdImage: { type: String },
+    forthImage: { type: String },
+    fifthImage: { type: String },
+    sixthImage: { type: String },
     status: { type: String, default: "Offline"},
     configurationType: { type: String, required: true }
 });

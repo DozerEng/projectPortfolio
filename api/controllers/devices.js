@@ -44,7 +44,7 @@ exports.devices_create_device = (req, res, next) => {
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         currentState: req.body.currentState,
-        deviceImage: req.file.path
+        mainImage: req.file.path
     });
     device
         .save() //method for storing to mongo db
@@ -55,6 +55,7 @@ exports.devices_create_device = (req, res, next) => {
                 createdDevice: {
                     name: result.name,
                     currentState: result.currentState,
+                    mainImage: result.mainImage,
                     _id: result._id,
                     request: {
                         type: "GET",

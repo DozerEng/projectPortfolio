@@ -13,6 +13,13 @@
   <div id="dotContainer" style="text-align:center"></div>
   <p id="numberText"></p>
 </div>  
+<br>
+<div class="layout">
+  <div class="descriptions">
+    
+  </div>
+
+</div>
 
 
 <script>
@@ -22,6 +29,7 @@ var slideIndex = 0;
 
 initiateSlideShow = () => {
   otherProjectsData.forEach( (value, index, array) => {
+    //dot button set up with eventListener
     var newId = "dot" + index;
     var $span = $("<span />").addClass("dot").attr('id', newId).on("click", () => {
       changeSlide(index);
@@ -41,9 +49,28 @@ nextSlide = (incrementValue) => {
 }
 
 changeSlide = (newSlide) => {
+  slideIndex = newSlide;
+  //Image Content
   $("#numberText").text( (newSlide + 1) + ' / ' + projectCount );
-  $(".imageSlideShow").attr('src', otherProjectsData[newSlide].projectImage);
+  $(".imageSlideShow").attr('src', otherProjectsData[newSlide].mainImage);
   $("#slideShowText").text(otherProjectsData[newSlide].title);
+  //Description Content
+  $('.descriptions').empty();
+  $('<p />').text(otherProjectsData[newSlide].shortDescription).appendTo('.descriptions');
+  $('<p />').text(otherProjectsData[newSlide].longDescription).appendTo('.descriptions');
+  //Check for additional Images
+  if (otherProjectsData[newSlide].secondImage != "" ) {
+    $('<img />')
+      .attr('src', otherProjectsData[newSlide].secondImage)
+      .addClass('additionalImage')
+      // .on("click", () => {
+      //   popUpButton('open', otherProjectsData[newSlide].secondImage);
+      // })
+      .appendTo('.descriptions');
+  }
+
+
+  //Update Active Dot
   for(let i = 0; i < projectCount; i++ ) {
     if(i === newSlide) {
       $("#dot" + i).addClass(' activeDot');

@@ -7,10 +7,10 @@ const checkAuth = require("../middleware/check-auth");
 
 const storage = multer.diskStorage({ //Every file received will have the following functions called
     destination: function(req, file, cb) {
-        cb(null, './uploads/');
+        cb(null, './public/images/devices/');
     },
     filename: function(req, file, cb) {
-        cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname); //.replace(/:/g, '-') replaces : with - to conform to windows
+        cb(null, file.originalname); //.replace(/:/g, '-') replaces : with - to conform to windows
     }
 });
 
@@ -34,7 +34,7 @@ const upload = multer({ //storage config for uploads
 //Handle HTTP requests
 router.get('/', DevicesController.devices_get_all);
 
-router.post('/', upload.single("deviceImage"), DevicesController.devices_create_device);
+router.post('/', upload.single("mainImage"), DevicesController.devices_create_device);
 
 router.get('/:deviceId', DevicesController.devices_get_device);
 

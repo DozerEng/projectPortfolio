@@ -12,7 +12,10 @@ const mongoose = require("mongoose");
 const otherProjectsSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     name: { type: String, required: true },
-    projectImage: { type: String, required: true },
+    mainImage: { type: String, required: true },
+    secondImage: { type: String, default: "" },
+    thirdImage: { type: String, default: "" },
+    forthImage: { type: String, default: "" },
     title: { type: String, required: true},
     shortDescription: { type: String, default: "" },
     longDescription: { type: String, default: ""}
