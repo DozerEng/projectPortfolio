@@ -1,8 +1,8 @@
 <div class="layout">
   <div class="slideShowContainer">
-
-    <img class="imageSlideShow">
-<!-- <img class="imageSlideShow" onclick="popUpButton('open','imageSlideShow')"> -->
+<!-- 
+    <img class="imageSlideShow"> -->
+    <img id="imageSlideShow" onclick="popUpButton('open','imageSlideShow')">
     <div id="slideShowText"></div>
 
     <a class="prev" onclick="nextSlide(-1)">&#10094;</a>
@@ -52,7 +52,7 @@ changeSlide = (newSlide) => {
   slideIndex = newSlide;
   //Image Content
   $("#numberText").text( (newSlide + 1) + ' / ' + projectCount );
-  $(".imageSlideShow").attr('src', otherProjectsData[newSlide].mainImage);
+  $("#imageSlideShow").attr('src', otherProjectsData[newSlide].mainImage);
   $("#slideShowText").text(otherProjectsData[newSlide].title);
   //Description Content
   $('.descriptions').empty();
@@ -62,10 +62,10 @@ changeSlide = (newSlide) => {
   if (otherProjectsData[newSlide].secondImage != "" ) {
     $('<img />')
       .attr('src', otherProjectsData[newSlide].secondImage)
-      .addClass('additionalImage')
-      // .on("click", () => {
-      //   popUpButton('open', otherProjectsData[newSlide].secondImage);
-      // })
+      .attr('id', 'imageOtherProjectsBody')
+      .on("click", () => {
+        popUpButton('open', 'imageOtherProjectsBody');
+      })
       .appendTo('.descriptions');
   }
 

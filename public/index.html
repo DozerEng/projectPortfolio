@@ -46,6 +46,8 @@
                 <div class="layout mobileNavBar">
                     <a href="javascript:void(0)" onclick="menu()">Menu &#9776</a>
                 </div>
+            </div>
+            <div class="menubar">
                 <div class="layout navBar">
                         <a href="javascript:void(0)" id="home" onclick="navigateMain('home')">Home</a>
                         <a href="javascript:void(0)" id="about" onclick="navigateMain('about')">About</a>
@@ -56,6 +58,7 @@
             </div>
             <div class="sidebar">
                 <div class="layout sideNavBar">
+                    
                     <hr>
                     <a href="javascript:void(0)" id="loginButton" onclick="popUpButton('open', 'loginForm')">Login</a>
                     <a href="javascript:void(0)" id="signUpButton" onclick="popUpButton('open', 'signUpForm')">Sign Up</a>
@@ -87,7 +90,7 @@
                     <label for="password">Password:</label>
                     <input type="text" placeholder="Enter Password" name="password" required>
 
-                    <button type="submit" class="submitButton">Login</button>
+                    <button type="submit" class="submitButton"z>Login</button>
                     <button type="button" class="cancelButton" onclick="popUpButton('close','loginForm')">Close</button>
                 </form>
             </div>
@@ -192,11 +195,12 @@
         }
         //Load login/signup pop up - ToDo Everything + store JWT in cookie
         popUpButton = (windowAction, popUpName) => {
+
             var popUpId = "#" + popUpName;
             var popUpClass = "." + popUpName;
 
-            $(".backgroundCover").css('display', 'block');
-            if(windowAction === 'open') {
+            if(windowAction === 'open') {   
+                $(".backgroundCover").css('display', 'block');
                 if(popUpName.match(/^image/)) {
                     var imgUrl = $(popUpId).attr('src');
 
@@ -209,7 +213,7 @@
                     var windowHeight = $(window).height();
                     var windowWidth = $(window).width();
 
-                    if(realHeight > realWidth ) {
+                    if( realHeight/realWidth - windowHeight/windowWidth > 0.0 ) { //realHeight > windowWidth
                         var imageHeight = 0.8 * windowHeight;
                         var heightOffset = ((windowHeight - imageHeight) / 2.0 ); 
                         var widthOffset = (windowWidth - (imageHeight/realHeight)*realWidth ) / 2.0;

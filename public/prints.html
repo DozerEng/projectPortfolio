@@ -1,8 +1,6 @@
 <div class="layout">
   <div class="slideShowContainer">
-
-    <img class="imageSlideShow">
-<!-- <img class="imageSlideShow" onclick="popUpButton('open','imageSlideShow')"> -->
+    <img id="imageSlideShow" onclick="popUpButton('open','imageSlideShow')">
     <div id="slideShowText"></div>
 
     <a class="prev" onclick="nextSlide(-1)">&#10094;</a>
@@ -50,7 +48,7 @@ nextSlide = (incrementValue) => {
 changeSlide = (newSlide) => {
   slideIndex = newSlide;
   $("#numberText").text( (newSlide + 1) + ' / ' + projectCount );
-  $(".imageSlideShow").attr('src', printsData[newSlide].mainImage);
+  $("#imageSlideShow").attr('src', printsData[newSlide].mainImage);
   $("#slideShowText").text(printsData[newSlide].title);
   $('.descriptions').empty();
   $('<p />').text(printsData[newSlide].description).appendTo('.descriptions');
