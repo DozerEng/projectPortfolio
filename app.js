@@ -36,6 +36,7 @@ app.use(bodyParser.urlencoded({extended: false})); //handling simple bodies
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
+
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");//handler for CORS errors, change "*" to restrict access 
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authroization");//acceptable headers, should be adjusted 
