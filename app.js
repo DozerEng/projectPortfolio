@@ -41,7 +41,7 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");//handler for CORS errors, change "*" to restrict access 
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authroization");//acceptable headers, should be adjusted 
     if (req.method === "OPTIONS") {
-        res.header("Access-Contro-Allow-Methods", "PUT, POST, PATCH, DELETE, GET"); 
+        res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET"); 
         return res.status(200).json({});
     }
     next();

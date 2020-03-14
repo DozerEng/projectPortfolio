@@ -2,14 +2,12 @@
 nodemon.json
 uploads/*
 /public/images/*
-/public/.well-known/*
-/public/.well-known/.pki-validation/*
+/ssl/*
 
 #Exception to the rule
 !uploads/.gitkeep
 !public/images/favicon.ico
-!public/.well-known/.pki-validation
-!public/.well-known/.pki-validation/.gitkeep
+!/ssl/.gitkeep
 
 #Directories to ignore
 /node_modules/
