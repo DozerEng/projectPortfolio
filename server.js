@@ -14,14 +14,14 @@ const hostname = process.env.HOSTNAME;
 const http_port = process.env.HTTP_PORT; 
 const https_port = process.env.HTTPS_PORT; 
 
-const httpsOptions = {
-    cert: fs.readFileSync(process.env.CRT),
-    ca: fs.readFileSync(process.env.CA_BUNDLE),
-    key: fs.readFileSync(process.env.KEY)
-};
+// const httpsOptions = {
+//     cert: fs.readFileSync(process.env.CRT),
+//     ca: fs.readFileSync(process.env.CA_BUNDLE),
+//     key: fs.readFileSync(process.env.KEY)
+// };
 
 const httpServer = http.createServer(app);
-const httpsServer = https.createServer(httpsOptions, app);
+//const httpsServer = https.createServer(httpsOptions, app);
 
 httpServer.listen(http_port);
-httpsServer.listen(https_port, hostname);
+//httpsServer.listen(https_port, hostname);

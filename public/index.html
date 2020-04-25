@@ -22,9 +22,9 @@
         <title>Pillon Engineering</title>
 
         <!-- Include the jquery library -->
-        <script type=text/javascript src="http://code.jquery.com/jquery-1.7.1.min.js"></script> 
+        <script type=text/javascript src="//code.jquery.com/jquery-1.7.1.min.js"></script> 
          <!-- Include the processing.js library -->
-        <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
+        <script src="//cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
 
         <link rel="stylesheet" href="styles.css">
         <link rel="icon" href="/images/favicon.ico">
@@ -82,7 +82,7 @@
 
             <div id="loginForm">
                 <form action="/user/login" method="post" class="layout loginContainer">
-                    <h6>Login<br>(Currently unavailable)</h6>
+                    <h6>Login<br></h6>
 
                     <label for="email">E-mail:</label>
                     <input type="text" placeholder="Enter Email" name="email" required>
@@ -97,7 +97,7 @@
 
             <div id="signUpForm">
                 <form action="/user/signup" method="post" class="layout loginContainer">
-                    <h6>Sign Up<br>(Currently unavailable)</h6>
+                    <h6>Sign Up<br></h6>
 
                     <label for="email">E-mail:</label>
                     <input type="text" placeholder="Enter Email" name="email" required>
@@ -147,6 +147,7 @@
         }
         //Navigation Bar Links - ToDo cookie to remember page, if that is a good practice
         navigateMain = (page) => {
+            debugger;
             $.ajax({
                 url: "content/" + page + ".html",
                 type: "GET",
